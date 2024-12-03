@@ -7,8 +7,6 @@ let sample = """7 6 4 2 1
 8 6 4 4 1
 1 3 6 7 9"""
 
-let sample2 = [ ]
-
 assert (Day02.Part1.run sample = 2)
 assert (Day02.Part2.run sample = 4)
 
