@@ -17,7 +17,7 @@ let isValid rules update =
         | _ -> true
     )
 
-let middleElement xs = Seq.item (Seq.length xs / 2) xs
+let middleElement xs = Seq.item (length xs / 2) xs
 
 let run input =
     let rules, updates = CharStream.ParseString(input, 0, length input, (parseRules .>>. (spaces >>. parseUpdates)), (), null).Result
