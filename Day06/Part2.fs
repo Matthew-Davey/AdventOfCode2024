@@ -49,9 +49,10 @@ let rec escapes position direction path grid =
     if outOfBounds ny nx grid then
         true
     else if grid[ny, nx] = '#' then
-        escapes position (rotate direction) path grid
-    else if (length path % 100 = 0) && isLooping path then
-        false
+        if isLooping path then
+            false
+        else
+            escapes position (rotate direction) path grid
     else
         escapes (ny, nx) direction (path @ [position]) grid
 
