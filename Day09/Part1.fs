@@ -18,7 +18,7 @@ let sequenceBlocks =
            Array.replicate count block
        )
 
-let compactBlocks (blocks : Block array) =
+let compactBlocks blocks =
     let mutable i, j = 0, Array.length blocks - 1
     while i <> j do
         match blocks[i], blocks[j] with
@@ -30,8 +30,7 @@ let compactBlocks (blocks : Block array) =
     blocks
 
 let checksum =
-    Array.mapi (fun i block ->
-        match block with
+    Array.mapi (fun i -> function
         | File j -> (int64 i * int64 j)
         | _ -> 0
     )
