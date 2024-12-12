@@ -15,9 +15,9 @@ let sequenceBlocks =
     Array.indexed
     >> Array.collect (fun (i, count) ->
            if i % 2 = 0 then
-               [| for j in 1..count do (File ((i / 2), count)) |]
+               Array.replicate count (File (i / 2, count))
            else
-               [| for j in [count.. - 1 .. 1] do (FreeSpace j) |]
+               [| for j = count downto 1 do (FreeSpace j) |]
        )
 
 let inline findFreeSpace size =
