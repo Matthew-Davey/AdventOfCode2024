@@ -2,10 +2,6 @@ module Day11.Part2
 
 open FSharpPlus
 
-module List =
-    let sumByL fn =
-        List.fold (fun acc x -> acc + fn x) 0L
-
 let parseInput =
     String.trimWhiteSpaces
     >> String.split [" "]
@@ -26,10 +22,10 @@ let rec blink iterations stones =
                | value, count -> [(int64 value * 2024L |> string, count)]
            )
         |> List.groupBy fst
-        |> List.map (fun (key, stones) -> (key, List.sumByL snd stones))
+        |> List.map (fun (key, stones) -> (key, List.sumBy snd stones))
         |> blink (iterations - 1)
 
 let run =
     parseInput
     >> blink 75
-    >> List.sumByL snd
+    >> List.sumBy snd
